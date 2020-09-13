@@ -1,24 +1,31 @@
 const express = require('express');
 const app = express();
 
-const port = 3000;
+//const port = 3000;
+
+//Conexion a Base de datos
+const mongoose = require('mongoose');
+
+const user = 'pruebas_memo';
+const password = 'ijzoT9QEsVlOlmrD';
+const dbname = 'veterinaria';
+const uri = `mongodb+srv://${user}:${password}@cluster0.emcqd.gcp.mongodb.net/${dbname}?retryWrites=true&w=majority`;
+mongoose.connect(uri, 
+  {useNewUrlParser: true, useUnifiedTopology: true}
+)
+.then(()=>console.log('Base de datos conectada'))
+.catch(e => console.log(e));
 
 // Motor de plantillas
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views');
 
-
 app.use(express.static(__dirname + "/public"));
 
-app.get('/',(req, res)=>{
-  //res.send('Mi respuesta desde express');
-  res.render('index',{titulo: 'Mi titulo dinamico'});
-});
+//Rutas Web
+app.use('/', require('./router/RutasWeb'));
+app.use('/mascotas', require('./router/Mascotas'));
 
-app.get('/servicios',(req, res)=>{
-  //res.send('Mi respuesta desde servicios');
-  res.render('servicios',{titulo: 'Este es un mensaje dinamico de la pagina de sercios'});
-});
 
 app.use((req,res,next)=>{
   //res.status(404).sendFile(__dirname + '/public/404.html');
