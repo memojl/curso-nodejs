@@ -2,13 +2,14 @@ const express = require('express');
 const app = express();
 
 //const port = 3000;
-
+require('dotenv').config()
 //Conexion a Base de datos
 const mongoose = require('mongoose');
 
 const user = 'pruebas_memo';
 const password = 'ijzoT9QEsVlOlmrD';
 const dbname = 'veterinaria';
+
 const uri = `mongodb+srv://${user}:${password}@cluster0.emcqd.gcp.mongodb.net/${dbname}?retryWrites=true&w=majority`;
 mongoose.connect(uri, 
   {useNewUrlParser: true, useUnifiedTopology: true}
