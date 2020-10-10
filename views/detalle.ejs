@@ -1,0 +1,14 @@
+<%- include("template/head", {tituloWeb:'Detalle de mascota'}) %>
+<%- include("template/navbar") %>
+<div class="container">
+    <H1>Detalle Mascota</H1>
+    <% if(error){ %>
+        <p>
+            <%= mensaje %> 
+        </p>
+    <% }else {%>
+        <p>Id existe.</p>
+    <% } %>
+    <a href="/mascotas" class="btn btn-dark">Volver</a>
+</div>
+<%- include("template/footer") %>
