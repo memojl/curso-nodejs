@@ -35,11 +35,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.14.4/dist/sweetalert2.all.min.js"></script>
 <script>
-  /*
-  const btnEliminar = document.querySelector('.btn-danger')
-  btnEliminar.addEventListener('click', async() => {
-    console.log(btnEliminar.dataset.id)  
-  });*/
   $(document).on('click', '.btn-danger', function () {
     const element = $(this)[0].parentElement.parentElement;const id = $(element).attr('id');
     console.log(id);
@@ -57,7 +52,7 @@
         const data = fetch(`/mascotas/${id}`, {
           method: 'delete'
         });
-        //const res = data.json();//console.log(res);
+        //const res = await data.json();//console.log(res);
         if(data){
             window.location.href = '/mascotas'
             console.log('El registro ha sido eliminado')
